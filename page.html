@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post and Comment Management</title>
+    <script defer src="main.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1, h2, h3 {
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+        }
+        
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        
+        input[type="submit"], button, input[type="button"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        
+        input[type="submit"]:hover, button:hover, input[type="button"]:hover {
+            background-color: #45a049;
+        }
+        
+        .form-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .comment-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .comment-item {
+            background-color: white;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .comment-item p {
+            margin: 0 0 10px 0;
+        }
+        
+        .comment-form {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: white;
+            border-radius: 4px;
+        }
+        
+        .btn-close {
+            background-color: #f44336;
+        }
+        
+        .btn-close:hover {
+            background-color: #da190b;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #555;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .note {
+            color: #666;
+            font-size: 0.9em;
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>📝 Post and Comment Management System</h1>
+    
+    <!-- Post Form -->
+    <div class="container">
+        <h2>Create / Edit Post</h2>
+        <div class="form-group">
+            <div>
+                <label for="id_txt">ID</label>
+                <input type="text" id="id_txt" placeholder="Leave empty for auto-generate">
+                <p class="note">Leave empty to auto-generate ID</p>
+            </div>
+            <div>
+                <label for="title_txt">Title</label>
+                <input type="text" id="title_txt" placeholder="Enter post title">
+            </div>
+            <div>
+                <label for="views_txt">Views</label>
+                <input type="text" id="views_txt" placeholder="Enter view count">
+            </div>
+        </div>
+        <input type="submit" value="💾 Save Post" onclick="saveData()">
+        <button onclick="clearForm()">🗑️ Clear Form</button>
+    </div>
+    
+    <!-- Post List -->
+    <div class="container">
+        <h2>Posts List</h2>
+        <table id="post-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Views</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="post-body">
+                <!-- Posts will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+    
+    <!-- Comment Section -->
+    <div id="comment-section" class="comment-section">
+        <h2>💬 Comments Management</h2>
+        <button class="btn-close" onclick="hideComments()">✖ Close Comments</button>
+        
+        <!-- Comment List -->
+        <div id="comment-list">
+            <!-- Comments will be loaded here -->
+        </div>
+        
+        <!-- Comment Form -->
+        <div class="comment-form">
+            <h3>Add / Edit Comment</h3>
+            <input type="hidden" id="comment-id">
+            <input type="hidden" id="comment-postId">
+            
+            <label for="comment-text">Comment Text</label>
+            <textarea id="comment-text" rows="4" placeholder="Enter your comment here..."></textarea>
+            
+            <input type="submit" value="💾 Save Comment" onclick="saveComment()">
+            <button onclick="clearCommentForm()">🗑️ Clear Form</button>
+        </div>
+    </div>
+</body>
+</html>

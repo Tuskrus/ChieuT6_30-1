@@ -1,2 +1,4 @@
-# T7_2
-2280603781 - Lâm Thúy Vy
+## Thông tin sinh viên
+
+**Họ và tên:** Nguyễn Trần Ngọc Hân  
+**MSSV:** 2280600877
